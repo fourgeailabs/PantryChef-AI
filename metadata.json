@@ -1,0 +1,6 @@
+{
+  "name": "AI Meal Generator",
+  "description": "An AI application that helps generate meals from AI and Google search results, ingredients on hand, and portion sizes for everyone eating.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
