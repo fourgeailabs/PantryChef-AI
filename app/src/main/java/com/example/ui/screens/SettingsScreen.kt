@@ -33,6 +33,18 @@ fun SettingsScreen() {
 
     val releases = listOf(
         ReleaseNote(
+            version = "1.01.00",
+            date = "August 2026",
+            summary = "Shopping List & GPS Grocery Price Matcher",
+            details = listOf(
+                "Added custom Shopping List checklist tab to track ingredients you need to buy.",
+                "Added 'Import Needed' button to automatically parse and transfer extra recipe ingredients directly to the Shopping List.",
+                "Integrated FusedLocation GPS or manual City/ZIP code selection.",
+                "Integrated Gemini 3.5 Flash Google Search grounding to find the 4 nearest grocery stores.",
+                "Displays itemized and total price estimates sorted lowest-to-highest of the recommended brand version of each ingredient."
+            )
+        ),
+        ReleaseNote(
             version = "1.00.00",
             date = "August 2026",
             summary = "Initial Release of AI Meal Generator",
@@ -80,7 +92,7 @@ fun SettingsScreen() {
                     Icon(Icons.Default.NewReleases, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
                     Spacer(modifier = Modifier.width(16.dp))
                     Column(modifier = Modifier.weight(1f)) {
-                        Text(text = "What's New in v1.00.00", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                        Text(text = "What's New in v1.01.00", fontWeight = FontWeight.Bold, fontSize = 16.sp)
                         Text(text = "View update notes and release history", style = MaterialTheme.typography.bodyMedium)
                     }
                 }
@@ -104,7 +116,7 @@ fun SettingsScreen() {
                         )
                     }
                     Spacer(modifier = Modifier.height(12.dp))
-                    Text(text = "App Version: 1.00.00 (Build 1)", style = MaterialTheme.typography.bodyMedium)
+                    Text(text = "App Version: 1.01.00 (Build 2)", style = MaterialTheme.typography.bodyMedium)
                     Spacer(modifier = Modifier.height(8.dp))
 
                     Row(verticalAlignment = Alignment.CenterVertically) {

@@ -8,6 +8,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Restaurant
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -29,6 +30,7 @@ fun HomeScreen(viewModel: MealViewModel) {
 
     var newIngredientText by remember { mutableStateOf("") }
     var savedMessage by remember { mutableStateOf(false) }
+    var importedMessage by remember { mutableStateOf(false) }
 
     val dietaryOptions = listOf("None", "Vegetarian", "Vegan", "Gluten-Free", "Keto", "Low Carb")
 
@@ -186,7 +188,11 @@ fun HomeScreen(viewModel: MealViewModel) {
         // Generate Button
         item {
             Button(
-                onClick = { viewModel.generateMeal() },
+                onClick = {
+                    savedMessage = false
+                    importedMessage = false
+                    viewModel.generateMeal()
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(56.dp),
@@ -279,6 +285,32 @@ fun HomeScreen(viewModel: MealViewModel) {
                         Spacer(modifier = Modifier.height(8.dp))
                         Text("Additional Ingredients Needed:", fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onPrimaryContainer)
                         Text(meal.ingredientsNeeded, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onPrimaryContainer)
+
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Button(
+                            onClick = {
+                                viewModel.importNeededIngredients()
+                                importedMessage = true
+                            },
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = MaterialTheme.colorScheme.secondary,
+                                contentColor = MaterialTheme.colorScheme.onSecondary
+                            ),
+                            shape = RoundedCornerShape(12.dp)
+                        ) {
+                            Icon(Icons.Default.ShoppingCart, contentDescription = null, modifier = Modifier.size(18.dp))
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text("Import Needed to Shopping List")
+                        }
+                        if (importedMessage) {
+                            Text(
+                                text = "Successfully imported to Shopping List!",
+                                color = MaterialTheme.colorScheme.secondary,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 12.sp,
+                                modifier = Modifier.padding(top = 4.dp)
+                            )
+                        }
 
                         Spacer(modifier = Modifier.height(8.dp))
                         Text("Step-by-Step Instructions:", fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onPrimaryContainer)

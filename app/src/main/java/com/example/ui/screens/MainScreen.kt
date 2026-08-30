@@ -6,6 +6,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.Restaurant
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -14,6 +15,7 @@ import com.example.viewmodel.MealViewModel
 
 sealed class Screen(val route: String, val title: String, val icon: androidx.compose.ui.graphics.vector.ImageVector) {
     object Generate : Screen("generate", "Generate", Icons.Default.Restaurant)
+    object Shopping : Screen("shopping", "Shopping List", Icons.Default.ShoppingCart)
     object Saved : Screen("saved", "Saved", Icons.Default.Bookmark)
     object Settings : Screen("settings", "Settings", Icons.Default.Settings)
 }
@@ -28,7 +30,7 @@ fun MainScreen() {
         modifier = Modifier.fillMaxSize(),
         bottomBar = {
             NavigationBar {
-                listOf(Screen.Generate, Screen.Saved, Screen.Settings).forEach { screen ->
+                listOf(Screen.Generate, Screen.Shopping, Screen.Saved, Screen.Settings).forEach { screen ->
                     NavigationBarItem(
                         icon = { Icon(screen.icon, contentDescription = screen.title) },
                         label = { Text(screen.title) },
@@ -47,6 +49,7 @@ fun MainScreen() {
         ) {
             when (selectedTab) {
                 Screen.Generate -> HomeScreen(viewModel)
+                Screen.Shopping -> ShoppingListScreen(viewModel)
                 Screen.Saved -> SavedMealsScreen(viewModel)
                 Screen.Settings -> SettingsScreen()
             }

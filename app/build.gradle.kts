@@ -14,8 +14,8 @@ android {
     applicationId = "com.fourgeailabs.aimealgenerator"
     minSdk = 24
     targetSdk = 36
-    versionCode = 1
-    versionName = "1.00.00"
+    versionCode = 2
+    versionName = "1.01.00"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
@@ -112,7 +112,7 @@ dependencies {
   implementation(libs.logging.interceptor)
   implementation(libs.moshi.kotlin)
   implementation(libs.okhttp)
-  // implementation(libs.play.services.location)
+  implementation(libs.play.services.location)
   implementation(libs.retrofit)
   testImplementation(libs.androidx.compose.ui.test.junit4)
   testImplementation(libs.androidx.core)
